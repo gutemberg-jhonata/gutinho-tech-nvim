@@ -140,7 +140,7 @@ local config = {
   lsp = {
     -- enable servers that you already have installed without mason
     servers = {
-      -- "pyright"
+      -- "pyright",
     },
     formatting = {
       -- control auto formatting on save
@@ -156,10 +156,15 @@ local config = {
       disabled = { -- disable formatting capabilities for the listed language servers
         -- "sumneko_lua",
       },
-      timeout_ms = 1000, -- default format timeout
-      -- filter = function(client) -- fully override the default formatting function
-      --   return true
-      -- end
+      timeout_ms = 5000, -- default format timeout
+      filter = function(client) -- fully override the default formatting function
+		if vim.bo.filetype == "typescript" then
+         	return client.name == "null-ls"
+       	end
+
+        -- enable all other clients
+        return true
+      end
     },
     -- easily add or disable built in mappings added during LSP attaching
     mappings = {
@@ -244,7 +249,7 @@ local config = {
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
       -- config variable is the default configuration table for the setup function call
-      -- local null_ls = require "null-ls"
+      local null_ls = require "null-ls"
 
       -- Check supported formatters and linters
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -253,6 +258,7 @@ local config = {
         -- Set a formatter
         -- null_ls.builtins.formatting.stylua,
         -- null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.eslint
       }
       return config -- return final config table
     end,
