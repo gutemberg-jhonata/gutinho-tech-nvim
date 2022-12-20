@@ -14,13 +14,17 @@ First install astrovim:
 ```
 Then download the user configuration and execute the nvim command:
 ```bash
-  git clone https://github.com/gutemberg-jhonata/gutinho-tech-nvim.git ~/.config/nvim/lua/user
-  nvim
+ git clone https://github.com/gutemberg-jhonata/gutinho-tech-nvim.git ~/.config/nvim/lua/user
+ nvim
+```
+Also install ripgrep for the Fuzzy Finder to work correctly:
+```bash
+ sudo apt-get update && apt-get install ripgrep
 ```
 Finaly install the typescript and eslint lsp server:
 ```bash
-  :LspInstall typescript
-  :LspInstall eslint 
+ :LspInstall typescript
+ :LspInstall eslint 
 ```
 
 ## 💻 About
