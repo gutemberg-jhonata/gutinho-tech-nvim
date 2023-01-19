@@ -4,6 +4,13 @@
 -- You can think of a Lua "table" as a dictionary like data structure the
 -- normal format is "key = value". These also handle array like data structures
 -- where a value with no key simply has an implicit numeric key
+
+-- Fix notify warning
+vim.opt.termguicolors = true
+require("notify").setup({
+    background_colour = "#000000"
+})
+
 local config = {
 
   -- Configure AstroNvim updates
